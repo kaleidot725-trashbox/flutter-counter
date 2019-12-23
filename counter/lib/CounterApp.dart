@@ -5,25 +5,33 @@ import 'package:scoped_model/scoped_model.dart';
 
 class CounterApp extends StatelessWidget {
   Widget build(BuildContext context) {
-    return ScopedModel<CounterModel> (
-      model: CounterModel(),
-      child: Row(children: [
-        ScopedModelDescendant<CounterModel>(
-          builder: (context, child, model) => Text('${model.counter}'),
-        ),
-        ScopedModelDescendant<CounterModel>(
-          builder: (context, child, model) => RaisedButton(
-            onPressed: model.increment,
-            child: Text('Plus'),
+    return ScopedModel<CounterModel>(
+        model: CounterModel(),
+        child: Row(children: [
+          Expanded(
+            child: ScopedModelDescendant<CounterModel>(
+              builder: (context, child, model) => Text('${model.counter}', textAlign: TextAlign.center,),
+            ),
+            flex: 8,
           ),
-        ),
-        ScopedModelDescendant<CounterModel>(
-          builder: (context, child, model) => RaisedButton(
-            onPressed: model.decrement,
-            child: Text('Minus'),
+          Expanded(
+            child: ScopedModelDescendant<CounterModel>(
+              builder: (context, child, model) => RaisedButton(
+                onPressed: model.increment,
+                child: Text('+'),
+              ),
+            ),
+            flex: 1,
           ),
-        ),
-      ])
-    );
+          Expanded(
+            child: ScopedModelDescendant<CounterModel>(
+              builder: (context, child, model) => RaisedButton(
+                onPressed: model.decrement,
+                child: Text('-'),
+              ),
+            ),
+            flex: 1,
+          ),
+        ]));
   }
 }

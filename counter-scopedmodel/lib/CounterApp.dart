@@ -32,6 +32,7 @@ class CounterApp extends StatelessWidget {
             ),
             flex: 1,
           ),
-        ]));
+        ])
+    );
   }
 }
